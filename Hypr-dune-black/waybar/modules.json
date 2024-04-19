@@ -2,25 +2,30 @@
     // Workspaces
     "hyprland/workspaces" : {
         "on-click": "activate",
-        "active-only": false,
+        "active-only": true,
         "all-outputs": true,
-        "format": "{icon}",
+        "format": "{name}",
         "format-icons": {
-		"active": "",
-		"default": ""
+        "active": "",
+        "default": "",
         },
         "persistent-workspaces": {
-            "*": 5
+            "*": 9
         }
     },
 
+    "cpu": {
+        "interval": 5,
+        "format": "{usage}% ",
+        "max-length": 10
+    },
 
     // Rofi Application Launcher
     "custom/appmenu": {
         // START APPS LABEL
         "format": " ",
         // END APPS LABEL
-        "on-click": "sleep 0.2;rofi -show drun",
+        "on-click": "sleep 0.2;wofi --show drun",
         "tooltip": false
     },
 
@@ -36,8 +41,8 @@
         "modules": [
             "bluetooth",
             "pulseaudio/slider",
-	    "pulseaudio"
-
+            "pulseaudio",
+            "cpu"
         ]
     },
 
@@ -54,13 +59,12 @@
 
     // Clock
     "clock": {
-        "format": "{:%H:%M %a}",
+        "format": "{:%H:%M %A %d}",
         "tooltip-format": "<big>{:%d %m %Y}</big>\n<tt><small>{calendar}</small></tt>",
         // START CLOCK FORMAT
         "format-alt": "{:%Y-%m-%d}"
         // END CLOCK FORMAT
     },
-
 
     // Network
     "network": {
@@ -90,6 +94,7 @@
         "format-full": " {capacity}%",
         "format-icons": [" ", " ", " ", " ", " "]
     },
+
     // Power Profile
     "power-profiles-daemon": {
     "format": "{icon}",
@@ -129,12 +134,11 @@
    	"orientation": "horizontal",
         "modules": [
 		"highlight",
-		"trough",
+		"trough"
 	]
-},
+	},
 
     //brightness
-
     "backlight": {
 		"tooltip": false,
 		"format": "{icon} {percent}%",
@@ -142,9 +146,8 @@
         "on-scroll-up": "brightnessctl set 10%+",
 		"on-scroll-down": "brightnessctl set 10%-",
         "format-icons": ["", ""],
-
-
 	},
+
 	// System tray
     "tray": {
         "icon-size": 20,
@@ -159,9 +162,7 @@
         "format-disabled": " {status}",
         "format-off": " {status}",
         "interval": 30,
-        "on-click": "rfkill unblock bluetooth",
-        "on-click-middle": "blueman-manager",
-        "on-click-right": "rfkill block bluetooth",
+        "on-click": "blueman-manager",
         "on-scroll-up": "bluetoothctl power on",
         "on-scroll-down": "bluetoothctl power off",
         "format-no-controller": " {status}"
